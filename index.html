@@ -13,25 +13,30 @@
         <a class="navbar-brand" href="#">TRIVIA QUIZ</a>        
     </nav>
     <main>
-        <div class="mainContainer">
-            <div  id="welcomeContainer" class="hide">
+        <div id="mainContainer">
+            <div  id="welcomeContainer">
                 <div class="textWelcome">
                     <h2>¡Welcome to the Quiz!</h2>
                     <button id="start-btn">START</button>
                 </div>
             </div>
             <div id="questionContainer" class="hide">
-                <div id ="question">Pintada preguntas</div>
+                <div id ="questionPrint"></div>
                 <div class = "buttonContainer">
-                    <div id="answer-buttons">Pintada respuestas</div>
+                    <div id="answerButtonsPrint"></div>
                 </div>
-                <button id="next-btn" class="hide">Next</button>
+                <button id="next-btn">Next</button>
+                <button id="restart-btn" class="hide">Restart</button>
             </div>
             <div id="resultContainer" class="hide">
-                <div id="score"></div>
+                <div id="score"><h1>10/10</h1></div>
                 <div id="scoreTextContainer">
-                    <div id=""></div>
-                    <div></div>
+                    <div id="scoreText" class="">
+                        Here goes your results!
+                    </div>
+                    <div>
+                        <button id="viewStats">Your Stats</button>
+                    </div>
                 </div>
             </div>
         </div>
