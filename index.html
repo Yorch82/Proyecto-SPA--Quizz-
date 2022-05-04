@@ -6,9 +6,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
+    <nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark d-flex justify-content-center">
+        <a class="navbar-brand" href="#">TRIVIA QUIZ</a>        
+    </nav>
+    <main>
+        <div class="mainContainer">
+            <div  id="welcomeContainer" class="hide">
+                <div class="textWelcome">
+                    <h2>¡Welcome to the Quiz!</h2>
+                    <button id="start-btn">START</button>
+                </div>
+            </div>
+            <div id="questionContainer" class="hide">
+                <div id ="question">Pintada preguntas</div>
+                <div class = "buttonContainer">
+                    <div id="answer-buttons">Pintada respuestas</div>
+                </div>
+                <button id="next-btn" class="hide">Next</button>
+            </div>
+            <div id="resultContainer" class="hide">
+                <div id="score"></div>
+                <div id="scoreTextContainer">
+                    <div id=""></div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
 
     <script src="./main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    
 </body>
 </html>
