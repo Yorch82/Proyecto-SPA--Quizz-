@@ -96,12 +96,13 @@ const questions = [
     }
     
     startButton.addEventListener('click',startGame)
+
     nextButton.addEventListener('click',() =>{
     currentQuestionIndex++;
     setNextQuestion()
   })
-
-  restartButton.addEventListener('click', startGame)  
+  
+    restartButton.addEventListener('click', startGame)  
   
   
   
