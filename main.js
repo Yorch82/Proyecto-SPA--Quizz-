@@ -83,3 +83,8 @@ let currentQuestionIndex;
   restartButton.addEventListener('click', startGame)  
   
   
+
+  
+  
+  
+    
