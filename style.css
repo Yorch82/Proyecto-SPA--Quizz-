@@ -1,25 +1,5 @@
 @import url("//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 
-
-
-/* html{
-  font-size: ;
-} */
-
-
-.navbar-icon-top .navbar-nav .nav-link > .fa {
-  position: relative;
-  width: 36px;
-  font-size: 24px;
-}
-
-.navbar-icon-top .navbar-nav .nav-link > .fa > .badge {
-  font-size: 0.75rem;
-  position: absolute;
-  right: 0;
-  font-family: sans-serif;
-}
-
 #mainContainer{
   border-style: solid;
   border-color:red;
@@ -52,4 +32,24 @@
 
 .btn.wrong {
   background-color: rgb(255, 0, 0);
+}
+
+#questionContainer {
+  min-width: 50%;
+  min-height: 50rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#questionPrint {
+  display: flex;
+  align-content: flex-start;
+} 
+
+.buttonContainer {
+  display: flex;  
+  justify-content: flex-end;
+  
 }

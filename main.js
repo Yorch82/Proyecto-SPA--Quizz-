@@ -3,40 +3,20 @@ const questionContainer = document.getElementById("questionContainer");
 const resultContainer = document.getElementById("resultContainer");
 const startButton = document.getElementById("start-btn");
 const questionPrint = document.getElementById("questionPrint");
-const answerButtonPrint = document.getElementById("answertButtonPrint");
+const answerButtonPrint = document.getElementById("answerButtonPrint");
 const nextButton = document.getElementById("next-btn");
 const restartButton = document.getElementById("restart-btn");
-
 let currentQuestionIndex;
 
 
-const questions = [
-    {
-      question: "What is 2 + 2?",
-      answers: [
-        { text: "4", correct: true },
-        { text: "22", correct: false },
-      ],
-    },
-    {
-      question: "Is web development fun?",
-      answers: [
-        { text: "Kinda", correct: false },
-        { text: "YES!!!", correct: true },
-        { text: "Um no", correct: false },
-        { text: "IDK", correct: false },
-      ],
-    },
-    {
-      question: "What is 4 * 2?",
-      answers: [
-        { text: "6", correct: false },
-        { text: "8", correct: true },
-        { text: "Yes", correct: false },
-      ],
-    },
-  ];
-  
+  axios.get("https://opentdb.com/api.php?amount=10&type=multiple")    
+  .then((res) => {
+    let arrayQuestions = res.data.results
+    console.log(arrayQuestions)
+    startGame(arrayQuestions)
+  })      
+  .catch((err) => console.error(err));
+
 
   function setStatusClass(element, correct){
     if (correct){
@@ -59,7 +39,7 @@ const questions = [
     }
   }
 
-  function showQuestion(question){
+  function showQuestion(question){    
     questionPrint.innerText = question.question;
     question.answers.forEach(answer => {
       const button = document.createElement('button');
@@ -69,45 +49,37 @@ const questions = [
         button.dataset.correct = true;
       }
       button.addEventListener('click',selectAnswer)
-      questionPrint.appendChild(button)      
+      answerButtonPrint.appendChild(button)      
     });
   }
 
 
   function resetState() {
     nextButton.classList.add('hide');
-    while (questionPrint.firstChild){
-      questionPrint.removeChild(questionPrint.firstChild)
+    while (answerButtonPrint.firstChild){
+      answerButtonPrint.removeChild(answerButtonPrint.firstChild)
      }
   }
 
 
-  function setNextQuestion(){
+  function setNextQuestion(arrayQuestions){
     resetState()
-    showQuestion(questions[currentQuestionIndex])
+    showQuestion(arrayQuestions[currentQuestionIndex])
   }
 
 
-  function startGame(){
+  function startGame(arrayQuestions){
     welcomeContainer.classList.add('hide')
     currentQuestionIndex = 0
     questionContainer.classList.remove('hide')
-    setNextQuestion()
+    setNextQuestion(arrayQuestions)
     }
     
-    startButton.addEventListener('click',startGame)
-
+  startButton.addEventListener('click',startGame)
     nextButton.addEventListener('click',() =>{
     currentQuestionIndex++;
     setNextQuestion()
-  })
-  
-    restartButton.addEventListener('click', startGame)  
-  
+  })  
+  restartButton.addEventListener('click', startGame)  
   
   
-    axios.get("https://jsonplaceholder.typicode.com/posts")
-    
-    .then((res) => console.log(res))
-         
-    .catch((err) => console.error(err));
