@@ -24,6 +24,7 @@
   border-style: solid;
   border-color:red;
   display:flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 35vw; 
@@ -31,15 +32,56 @@
   margin:1rem;
 }
 
+.button_answer{
+  width:20em;
+  height: 10em;
+  display:flex;
+  
+}
+
 .startContainer{
   display:flex;
   justify-content: center;
 }
-  
+
+#questionPrint{
+  display:flex;
+  justify-content: center;
+}
 
 #questionContainer{
     border-style:solid;
     border-color: red;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;  
+    width: 60%;
+    padding:2em;
+}
+
+.buttonContainer{
+  display:flex;
+  justify-content: center;
+  flex-direction: column; 
+}
+
+.btn__embellecedor{
+  display: flex;
+  margin:1em;
+}
+
+.button_answer{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  margin:1em;
+}
+
+#next-btn{
+  width:50%;
+  padding:1em;
+  margin:auto;
 }
 
 .hide{
