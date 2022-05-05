@@ -1,5 +1,12 @@
 @import url("//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 
+
+
+/* html{
+  font-size: ;
+} */
+
+
 .navbar-icon-top .navbar-nav .nav-link > .fa {
   position: relative;
   width: 36px;
@@ -12,6 +19,23 @@
   right: 0;
   font-family: sans-serif;
 }
+
+#mainContainer{
+  border-style: solid;
+  border-color:red;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 35vw; 
+  padding:1rem;
+  margin:1rem;
+}
+
+.startContainer{
+  display:flex;
+  justify-content: center;
+}
+  
 
 #questionContainer{
     border-style:solid;
