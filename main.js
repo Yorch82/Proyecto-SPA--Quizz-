@@ -12,13 +12,10 @@ const answerButtonPrint4 = document.getElementById("text_button4");
 
 
 
-<<<<<<< HEAD
-=======
 let currentQuestionIndex; 
 
 
   
->>>>>>> 3929470d70716e441e8caadd3dbc540099a2085b
 
 
   function setStatusClass(element, correct){
@@ -43,18 +40,11 @@ let currentQuestionIndex;
   }
 
   function showQuestion(question){    
-<<<<<<< HEAD
-    questionPrint.innerHTML = `<div>${question.question}</div>`
-    // question.answers.forEach(answer => {
-    //   const button = document.createElement('button');
-    //   button.innerText = answer.text;
-=======
     questionPrint.innerHTML = `<h2>${question.question}</h2>`;
     showAnswers(question)
    
     
   
->>>>>>> 3929470d70716e441e8caadd3dbc540099a2085b
     //   button.classList.add('btn');
     //   if(answer.correct){
     //     button.dataset.correct = true;
@@ -70,11 +60,11 @@ let currentQuestionIndex;
     incorrectAnswer.push(correctAnswer);
     allAnswers = incorrectAnswer.sort();
     answerButtonPrint1.innerHTML = `${arrayAnswers[0]}`;
-    answerButtonPrint2.innerHTML = `${arrayAnswers[1]}`
-    answerButtonPrint3.innerHTML = `${arrayAnswers[2]}`
-    answerButtonPrint4.innerHTML = `${arrayAnswers[3]}`
+    answerButtonPrint2.innerHTML = `${arrayAnswers[1]}`;
+    answerButtonPrint3.innerHTML = `${arrayAnswers[2]}`;
+    answerButtonPrint4.innerHTML = `${arrayAnswers[3]}`;
     //   button.classList.add('btn');
-    //   if(answer.correct){
+    //  if(answer.correct){
     //     button.dataset.correct = true;
     //   }
     //   button.addEventListener('click',selectAnswer)
@@ -99,24 +89,11 @@ let currentQuestionIndex;
 
   function startGame(){
     axios.get("https://opentdb.com/api.php?amount=10&type=multiple")    
-<<<<<<< HEAD
-    .then((res) => {
-=======
   .then((res) => {
->>>>>>> 3929470d70716e441e8caadd3dbc540099a2085b
     let arrayQuestions = res.data.results
     welcomeContainer.classList.add('hide')
     questionContainer.classList.remove('hide')
-    console.log(arrayQuestions)
     setNextQuestion(arrayQuestions)
-<<<<<<< HEAD
-    })      
-    .catch((err) => console.error(err));    
-  }
-    
-  startButton.addEventListener('click',startGame)
-  nextButton.addEventListener('click',() =>{
-=======
   })      
   .catch((err) => console.error(err));
     
@@ -124,7 +101,6 @@ let currentQuestionIndex;
     
     startButton.addEventListener('click',startGame)
     nextButton.addEventListener('click',() =>{
->>>>>>> 3929470d70716e441e8caadd3dbc540099a2085b
     currentQuestionIndex++;
     setNextQuestion()
   })  
