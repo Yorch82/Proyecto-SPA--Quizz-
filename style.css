@@ -52,10 +52,13 @@
     padding:2em;
 }
 
-.buttonContainer{
+#buttonContainer{
+  border-style: solid;
+  border-color: red;
   display:flex;
-  justify-content: center;
-  flex-direction: column; 
+  flex-direction: column;
+  width:90%;
+  align-items: center; 
 }
 
 #btn_embellecedor{

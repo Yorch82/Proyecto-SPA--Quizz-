@@ -5,10 +5,7 @@ const startButton = document.getElementById("start-btn");
 const nextButton = document.getElementById("next-btn");
 const restartButton = document.getElementById("restart-btn");
 const questionPrint = document.getElementById("questionPrint")
-const answerButtonPrint = document.getElementById("prueba");
-// const answerButtonPrint2 = document.getElementById("text_button2");
-// const answerButtonPrint3 = document.getElementById("text_button3");
-// const answerButtonPrint4 = document.getElementById("text_button4");
+const answerButtonPrint = document.getElementById("buttonContainer");
 
 
 
@@ -18,32 +15,28 @@ let currentQuestionIndex;
   
 
 
-  // function setStatusClass(element, correct){
-  //   if (correct){
-  //     element.classList.add('correct');
-  //   } else {
-  //     element.classList.add('wrong');
-  //   }
-  // }
+  function setStatusClass(element, correct){
+    if (correct){     
+      element.classList.add('correct');
+    } else {     
+      element.classList.add('wrong');
+    }
+  }
 
 
 
-  // function selectAnswer(){
-  //   allAnswers.forEach(value => {
-  //       if (correctAnswer == value){
-  //         correctAnswer.classList.add('correct');
-  //       } else {
-  //         incorrectAnswer.classList.add('wrong');
-  //       }
-  //     })
-    
-  //   if (question.length > currentQuestionIndex + 1) {
-  //     nextButton.classList.remove('hide');
-  //   } else{
-  //     restartButton.classList.remove('hide');
-  //   }
-  // }
-  //   button.addEventListener('click',selectAnswer)
+     function selectAnswer(question){
+      Array.from(answerButtonPrint.children).forEach((button) => {
+        setStatusClass(button, button.dataset.correct);
+      });
+
+      if (question.length > currentQuestionIndex + 1) {
+      nextButton.classList.remove('hide');
+      } else{
+      restartButton.classList.remove('hide');
+    }
+   }
+ 
 
   function showQuestion(question){    
     questionPrint.innerHTML = `<h2>${question.question}</h2>`;
@@ -61,34 +54,34 @@ let currentQuestionIndex;
       answers.push({text : incorrect, correct : false})
     })
     answers.push(correctAnswer)
+    answers.sort(function(a,b){
+      if (a.text > b.text){
+        return 1
+      }
+      if (a.text < b.text){
+        return -1
+      }
+      return 0
+    })  
     answers.forEach(answer => {
       const button = document.createElement("button")
-      button.inerHTML = answer.text
+      button.innerText = answer.text
       button.classList.add("button_answer")
       if (answer.correct){
         button.dataset.correct = true
-      }
-      // button.addEventListener('click', selectAnswer)
-      console.log(button)
-      answerButtonPrint.appendChild(button)
+      }      
+      button.addEventListener('click', selectAnswer(question));
+      answerButtonPrint.appendChild(button);
       
     })
-    
-    //   button.classList.add('btn');
-    //  if(answer.correct){
-    //     button.dataset.correct = true;
-    //   }
-    //   button.addEventListener('click',selectAnswer)
-    //   answerButtonPrint.appendChild(button)      
-    // });
   }
   
 
   function resetState() {
     nextButton.classList.add('hide');
-    // while (answerButtonPrint.firstChild){
-    //   answerButtonPrint.removeChild(answerButtonPrint.firstChild)
-    //  }
+    while (answerButtonPrint.firstChild){
+      answerButtonPrint.removeChild(answerButtonPrint.firstChild)
+     }
   }
 
 
