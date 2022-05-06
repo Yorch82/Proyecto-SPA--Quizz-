@@ -41,7 +41,10 @@ let currentQuestionIndex;
 
   function showQuestion(question){    
     questionPrint.innerHTML = `<h2>${question.question}</h2>`;
-    showAnswers(question)  
+    showAnswers(question)
+   
+    
+  
     //   button.classList.add('btn');
     //   if(answer.correct){
     //     button.dataset.correct = true;
@@ -55,13 +58,13 @@ let currentQuestionIndex;
     let correctAnswer = question.correct_answer;
     let incorrectAnswer = question.incorrect_answers;
     incorrectAnswer.push(correctAnswer);
-    let allAnswers = incorrectAnswer.sort();
-    answerButtonPrint1.innerHTML = `${allAnswers[0]}`
-    answerButtonPrint2.innerHTML = `${allAnswers[1]}`
-    answerButtonPrint3.innerHTML = `${allAnswers[2]}`
-    answerButtonPrint4.innerHTML = `${allAnswers[3]}`
+    allAnswers = incorrectAnswer.sort();
+    answerButtonPrint1.innerHTML = `${arrayAnswers[0]}`;
+    answerButtonPrint2.innerHTML = `${arrayAnswers[1]}`;
+    answerButtonPrint3.innerHTML = `${arrayAnswers[2]}`;
+    answerButtonPrint4.innerHTML = `${arrayAnswers[3]}`;
     //   button.classList.add('btn');
-    //   if(answer.correct){
+    //  if(answer.correct){
     //     button.dataset.correct = true;
     //   }
     //   button.addEventListener('click',selectAnswer)
@@ -90,7 +93,6 @@ let currentQuestionIndex;
     let arrayQuestions = res.data.results
     welcomeContainer.classList.add('hide')
     questionContainer.classList.remove('hide')
-    console.log(arrayQuestions)
     setNextQuestion(arrayQuestions)
   })      
   .catch((err) => console.error(err));
