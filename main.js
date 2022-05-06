@@ -9,13 +9,7 @@ const restartButton = document.getElementById("restart-btn");
 let currentQuestionIndex;
 
 
-  axios.get("https://opentdb.com/api.php?amount=10&type=multiple")    
-  .then((res) => {
-    let arrayQuestions = res.data.results
-    console.log(arrayQuestions)
-    startGame(arrayQuestions)
-  })      
-  .catch((err) => console.error(err));
+
 
 
   function setStatusClass(element, correct){
@@ -40,25 +34,25 @@ let currentQuestionIndex;
   }
 
   function showQuestion(question){    
-    questionPrint.innerText = question.question;
-    question.answers.forEach(answer => {
-      const button = document.createElement('button');
-      button.innerText = answer.text;
-      button.classList.add('btn');
-      if(answer.correct){
-        button.dataset.correct = true;
-      }
-      button.addEventListener('click',selectAnswer)
-      answerButtonPrint.appendChild(button)      
-    });
+    questionPrint.innerHTML = `<div>${question.question}</div>`
+    // question.answers.forEach(answer => {
+    //   const button = document.createElement('button');
+    //   button.innerText = answer.text;
+    //   button.classList.add('btn');
+    //   if(answer.correct){
+    //     button.dataset.correct = true;
+    //   }
+    //   button.addEventListener('click',selectAnswer)
+    //   answerButtonPrint.appendChild(button)      
+    // });
   }
 
 
   function resetState() {
     nextButton.classList.add('hide');
-    while (answerButtonPrint.firstChild){
-      answerButtonPrint.removeChild(answerButtonPrint.firstChild)
-     }
+    // while (answerButtonPrint.firstChild){
+    //   answerButtonPrint.removeChild(answerButtonPrint.firstChild)
+    //  }
   }
 
 
@@ -68,15 +62,21 @@ let currentQuestionIndex;
   }
 
 
-  function startGame(arrayQuestions){
+  function startGame(){
+    axios.get("https://opentdb.com/api.php?amount=10&type=multiple")    
+    .then((res) => {
+    let arrayQuestions = res.data.results
     welcomeContainer.classList.add('hide')
     currentQuestionIndex = 0
     questionContainer.classList.remove('hide')
+    console.log(arrayQuestions)
     setNextQuestion(arrayQuestions)
-    }
+    })      
+    .catch((err) => console.error(err));    
+  }
     
   startButton.addEventListener('click',startGame)
-    nextButton.addEventListener('click',() =>{
+  nextButton.addEventListener('click',() =>{
     currentQuestionIndex++;
     setNextQuestion()
   })  
