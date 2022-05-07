@@ -25,12 +25,13 @@ let currentQuestionIndex;
 
 
 
-     function selectAnswer(question){
+     function selectAnswer(){
       Array.from(answerButtonPrint.children).forEach((button) => {
         setStatusClass(button, button.dataset.correct);
       });
 
-      if (question.length > currentQuestionIndex + 1) {
+      if ( question.length > currentQuestionIndex + 1) {
+        
       nextButton.classList.remove('hide');
       } else{
       restartButton.classList.remove('hide');
@@ -38,7 +39,7 @@ let currentQuestionIndex;
    }
  
 
-  function showQuestion(question){    
+  function showQuestion(question){   
     questionPrint.innerHTML = `<h2>${question.question}</h2>`;
     showAnswers(question)  
   }
@@ -55,29 +56,29 @@ let currentQuestionIndex;
     })
     answers.push(correctAnswer)
     answers.sort(function(a,b){
-      if (a.text > b.text){
+      if (a.text > b.text){       
         return 1
       }
-      if (a.text < b.text){
+      if (a.text < b.text){       
         return -1
       }
-      return 0
+      return 0                   
     })  
     answers.forEach(answer => {
       const button = document.createElement("button")
       button.innerText = answer.text
       button.classList.add("button_answer")
       if (answer.correct){
-        button.dataset.correct = true
+        button.dataset.correct = true 
       }      
-      button.addEventListener('click', selectAnswer(question));
+      button.addEventListener('click', selectAnswer);
       answerButtonPrint.appendChild(button);
       
     })
   }
   
 
-  function resetState() {
+    function resetState() {
     nextButton.classList.add('hide');
     while (answerButtonPrint.firstChild){
       answerButtonPrint.removeChild(answerButtonPrint.firstChild)

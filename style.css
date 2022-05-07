@@ -42,9 +42,7 @@
   justify-content: center;
 }
 
-#questionContainer{
-    border-style:solid;
-    border-color: red;
+#questionContainer{ 
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;  
@@ -53,8 +51,6 @@
 }
 
 #buttonContainer{
-  border-style: solid;
-  border-color: red;
   display:flex;
   flex-direction: column;
   width:90%;
