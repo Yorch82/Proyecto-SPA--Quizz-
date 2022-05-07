@@ -6,10 +6,13 @@ const nextButton = document.getElementById("next-btn");
 const restartButton = document.getElementById("restart-btn");
 const questionPrint = document.getElementById("questionPrint")
 const answerButtonPrint = document.getElementById("buttonContainer");
+const showScore = document.getElementById ('showScore')
+const globalQuestion = document.getElementById ('globalQuestion')
 
-
+const totalQuestions = 2;
 
 let currentQuestionIndex; 
+
 
 
   
@@ -29,12 +32,12 @@ let currentQuestionIndex;
       Array.from(answerButtonPrint.children).forEach((button) => {
         setStatusClass(button, button.dataset.correct);
       });
-
-      if ( question.length > currentQuestionIndex + 1) {
+      
+      if ( totalQuestions > currentQuestionIndex + 1) {
         
       nextButton.classList.remove('hide');
       } else{
-      restartButton.classList.remove('hide');
+      showScore.classList.remove('hide');
     }
    }
  
@@ -86,34 +89,46 @@ let currentQuestionIndex;
   }
 
 
-  function setNextQuestion(arrayQuestions){
+  function setInitialQuestion(arrayQuestions){
     resetState()
-    currentQuestionIndex = 0
     showQuestion(arrayQuestions[currentQuestionIndex])
   }
 
+  function setNextQuestion(){
+    let preguntas = JSON.parse(localStorage.getItem('preguntas'))
+    resetState();
+    showQuestion(preguntas[currentQuestionIndex]);
+  }
 
   function startGame(){
     axios.get("https://opentdb.com/api.php?amount=10&type=multiple")    
   .then((res) => {
+    currentQuestionIndex = 0
     let arrayQuestions = res.data.results
     welcomeContainer.classList.add('hide')
-    questionContainer.classList.remove('hide')
-    setNextQuestion(arrayQuestions)
+    globalQuestion.classList.remove('hide')
+    localStorage.setItem('preguntas', JSON.stringify(arrayQuestions))
+    setInitialQuestion(arrayQuestions)
   })      
   .catch((err) => console.error(err));
     
+    }
+
+    function showResults(){
+      globalQuestion.classList.add('hide');
+      resultContainer.classList.remove('hide');
     }
     
     startButton.addEventListener('click',startGame)
     nextButton.addEventListener('click',() =>{
     currentQuestionIndex++;
-    setNextQuestion()
+    console.log(currentQuestionIndex)
+    setNextQuestion()  
   })  
-  restartButton.addEventListener('click', startGame)  
+  restartButton.addEventListener('click', startGame) 
+  showScore.addEventListener('click', showResults) 
   
   
-
   
   
   
