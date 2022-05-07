@@ -6,10 +6,13 @@ const nextButton = document.getElementById("next-btn");
 const restartButton = document.getElementById("restart-btn");
 const questionPrint = document.getElementById("questionPrint")
 const answerButtonPrint = document.getElementById("buttonContainer");
-const showScore = document.getElementById ('showScore')
-const globalQuestion = document.getElementById ('globalQuestion')
+const showScore = document.getElementById ('showScore');
+const globalQuestion = document.getElementById ('globalQuestion');
+const scoreText = document.getElementById ('scoreText');
 
-const totalQuestions = 2;
+let correctAnswers = 0;
+
+const totalQuestions = 4;
 
 let currentQuestionIndex; 
 
@@ -17,7 +20,7 @@ let currentQuestionIndex;
 
   function setStatusClass(element, correct){
     if (correct){     
-      element.classList.add('correct');
+      element.classList.add('correct');      
     } else {     
       element.classList.add('wrong');
     }
@@ -71,7 +74,14 @@ let currentQuestionIndex;
       if (answer.correct){
         button.dataset.correct = true 
       }      
-      button.addEventListener('click', selectAnswer);
+      button.addEventListener('click',() =>{
+        if (answer.correct == true){
+        correctAnswers++; 
+        localStorage.setItem('counter', JSON.stringify(correctAnswers));
+      }       
+        selectAnswer();
+      })
+        
       answerButtonPrint.appendChild(button);
       
     })
@@ -114,12 +124,15 @@ let currentQuestionIndex;
     function showResults(){
       globalQuestion.classList.add('hide');
       resultContainer.classList.remove('hide');
+      showScore.classList.remove('hide');
+      let counter = JSON.parse(localStorage.getItem('counter'))
+      scoreText.innerHTML = `<h2> ${counter} / 10 <br> Eres un paquete </h2>`;
+
     }
     
     startButton.addEventListener('click',startGame)
     nextButton.addEventListener('click',() =>{
     currentQuestionIndex++;
-    console.log(currentQuestionIndex)
     setNextQuestion()  
   })  
   restartButton.addEventListener('click', startGame) 
