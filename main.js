@@ -15,9 +15,6 @@ let currentQuestionIndex;
 
 
 
-  
-
-
   function setStatusClass(element, correct){
     if (correct){     
       element.classList.add('correct');
