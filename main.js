@@ -10,9 +10,15 @@ const showScore = document.getElementById ('showScore');
 const globalQuestion = document.getElementById ('globalQuestion');
 const scoreText = document.getElementById ('scoreText');
 
-const totalQuestions = 10;
+const totalQuestions = 4;
 let correctAnswers = 0;
 let currentQuestionIndex;
+let currentGame = 0;
+let prueba = {
+  game: 0,
+  correct: 0,
+}
+
 
 // Get the modal
 let modal = document.getElementById("myModal");
@@ -27,6 +33,8 @@ let span = document.getElementsByClassName("close")[0];
 // When the user clicks the button, open the modal 
 btn2.addEventListener('click',function() {
   modal.style.display = "block";
+  data.labels.push(currentGame);  
+  
 })
 
 // When the user clicks on <span> (x), close the modal
@@ -52,12 +60,13 @@ function setStatusClass(element, correct){
 
 function selectAnswer(){
   Array.from(answerButtonPrint.children).forEach((button) => {
-    setStatusClass(button, button.dataset.correct);
+    setStatusClass(button, button.dataset.correct); 
 });      
   if ( totalQuestions > currentQuestionIndex + 1) {        
     nextButton.classList.remove('hide');
   } else{
   showScore.classList.remove('hide');
+
 }
 }
 
@@ -94,10 +103,11 @@ function showAnswers(question){
       button.dataset.correct = true 
     }      
     button.addEventListener('click',() =>{
-      if (answer.correct == true){
+      if (answer.correct == true){    
       correctAnswers++; 
+      button.disabled = true;  
       localStorage.setItem('counter', JSON.stringify(correctAnswers));
-    }       
+    }         
     selectAnswer();
     })        
     answerButtonPrint.appendChild(button);      
@@ -123,6 +133,8 @@ function setNextQuestion(){
 }
 
 function startGame(){
+  localStorage.removeItem('counter')
+  currentGame ++;
   axios.get("https://opentdb.com/api.php?amount=10&type=multiple")    
   .then((res) => {
     currentQuestionIndex = 0
@@ -151,8 +163,7 @@ function showResults(){
     scoreText.innerHTML = `<h2> ${counter} / 10 <br> You are a BEAST! </h2>`;
   } else {
     scoreText.innerHTML = `<h2> ${counter} / 10 <br> GOD!!!!!!! </h2>`;
-  }
-  
+  }  
 }
     
 startButton.addEventListener('click',startGame)
@@ -162,3 +173,32 @@ nextButton.addEventListener('click',() =>{
 })  
 restartButton.addEventListener('click', startGame) 
 showScore.addEventListener('click', showResults)
+
+
+const data = {
+  labels: [],
+  datasets: [{
+    label: 'Mi primera gráfica',
+    backgroundColor: 'rgb(255, 0, 0)',
+    borderColor: 'rgb(255, 99, 132)',
+    data: [],
+  }]
+};
+
+const config = {
+  type: 'line',
+  data: data,
+  options: {
+    responsive: true,
+    plugins: {
+      title: {
+        display: true,
+        text: (ctx) => 'Point Style: ' + ctx.chart.data.datasets[0].pointStyle,
+      }
+    }
+  }
+};
+
+
+console.log(data.labels);
+const myChart = new Chart('chart', config);
