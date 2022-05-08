@@ -20,8 +20,7 @@
             <div  id="welcomeContainer">         
                 <div class="textWelcome" id="textWelcome">
                     <h2>¡Welcome to the Quiz!</h2>                
-                    <div class = "startContainer">
-                    <!-- <button id="start-btn">START</button> -->
+                    <div class = "startContainer">                    
                     <a href="#" id="start-btn" class="btn">
                         <span>S</span><span>T</span>
                         <span>A</span><span>R</span>
@@ -34,33 +33,48 @@
                 <div id="questionContainer" class="hide">
                 <div id ="questionPrint"></div>                             
                 </div>    
-                <div id = "buttonContainer" class="hide"></div>           
-            <!-- <button id="next-btn" class="hide">Next</button> -->
-                <a href="#" id="next-btn" class="btn">
-                    <span>N</span><span>E</span>
-                    <span>X</span><span>T</span>                    
+                <div id = "buttonContainer" class="hide"></div>               
+            <!-- <button id="showScore" class="hide">Show Score</button> -->
+            <div class="btnScore">
+                <a href="#" id="showScore" class="btn btn_result hide">
+                    <span>R</span><span>E</span>
+                    <span>S</span><span>U</span>
+                    <span>L</span><span>T</span>
+                    <span>S</span>                    
                 </a>
-            <button id="showScore" class="hide">Show Score</button>
+            </div>            
             </div>                          
-                   
-                    
-                
-        
-            <div id="resultContainer" class="hide">
-               
-                <div id="score"></div>
-                <button id="restart-btn" class="hide">Restart</button>
-                <div id="scoreTextContainer">
-                    <!-- <div id="showScore">
-                        Este div no hace ni puñetero caso
-                    </div> -->
-                    <div id="scoreText" class="">
-                        Here goes your results!
+            <a href="#" id="next-btn" class="btn btnNext hide">
+                <span>N</span><span>E</span>
+                <span>X</span><span>T</span>                    
+            </a>       
+            <div id="resultContainer" class="hide resCont">               
+                <div class="leftCont">
+                    <div id="score"></div>                    
+                    <div id="scoreTextContainer">                    
+                        <div id="scoreText" class="">Here goes your results!</div>                    
                     </div>
+                </div>                
+                <div class="rightCont">
                     <div>
-                        <button id="viewStats">Your Stats</button>
+                        <a href="#" id="restart-btn" class="btn btn_restart">
+                            <span>R</span><span>E</span>
+                            <span>S</span><span>T</span>
+                            <span>A</span><span>R</span>
+                            <span>T</span>                    
+                        </a>
+                    </div>
+                    <div class="statContainer">
+                        <a href="#" id="viewStats" class="btn statBtn">
+                            <span>S</span><span>T</span>
+                            <span>A</span><span>T</span>
+                            <span>S</span>
+                                               
+                        </a>
+                        <!-- <button id="viewStats">Your Stats</button> -->
                     </div>
                 </div>
+                
             </div>
         </div>
     </main>
