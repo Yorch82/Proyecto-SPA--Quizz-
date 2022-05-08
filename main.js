@@ -9,6 +9,7 @@ const answerButtonPrint = document.getElementById("buttonContainer");
 const showScore = document.getElementById ('showScore');
 const globalQuestion = document.getElementById ('globalQuestion');
 const scoreText = document.getElementById ('scoreText');
+
 const totalQuestions = 10;
 let correctAnswers = 0;
 let currentQuestionIndex;
@@ -100,6 +101,8 @@ function startGame(){
     let arrayQuestions = res.data.results
     textWelcome.classList.add('hide')
     globalQuestion.classList.remove('hide')
+    resultContainer.classList.add('hide')
+    showScore.classList.add('hide')
     localStorage.setItem('preguntas', JSON.stringify(arrayQuestions))
     setInitialQuestion(arrayQuestions)
   })      
@@ -110,7 +113,18 @@ function showResults(){
   resultContainer.classList.remove('hide');
   showScore.classList.remove('hide');
   let counter = JSON.parse(localStorage.getItem('counter'))
-  scoreText.innerHTML = `<h2> ${counter} / 10 <br> Eres un paquete </h2>`;
+  if (counter <= 2) {
+    scoreText.innerHTML = `<h2> ${counter} / 10 <br> Looser </h2>`;
+  } else if (counter >2 && counter < 5) {
+    scoreText.innerHTML = `<h2> ${counter} / 10 <br> You almost get it! Try again </h2>`;
+  } else if (counter >= 5 && counter <=7) {
+    scoreText.innerHTML = `<h2> ${counter} / 10 <br> You're doing great! </h2>`;
+  } else if (counter >7 && counter < 10) {
+    scoreText.innerHTML = `<h2> ${counter} / 10 <br> You are a BEAST! </h2>`;
+  } else {
+    scoreText.innerHTML = `<h2> ${counter} / 10 <br> GOD!!!!!!! </h2>`;
+  }
+  
 }
     
 startButton.addEventListener('click',startGame)
