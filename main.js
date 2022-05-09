@@ -103,11 +103,11 @@ function showAnswers(question){
       button.dataset.correct = true 
     }      
     button.addEventListener('click',() =>{
-      if (answer.correct == true){    
-      correctAnswers++; 
-      button.disabled = true;  
+      if (answer.correct == true){  
+      button.disabled = true;   
+      correctAnswers++;  
       localStorage.setItem('counter', JSON.stringify(correctAnswers));
-    }         
+    }                
     selectAnswer();
     })        
     answerButtonPrint.appendChild(button);      
