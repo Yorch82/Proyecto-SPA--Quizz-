@@ -46,6 +46,7 @@ function setStatusClass(element, correct){
 }
 function selectAnswer(){
   Array.from(answerButtonPrint.children).forEach((button) => {
+
     setStatusClass(button, button.dataset.correct);
 });
   if ( totalQuestions > currentQuestionIndex + 1) {
@@ -115,6 +116,7 @@ function setNextQuestion(){
   showQuestion(preguntas[currentQuestionIndex]);
 }
 function startGame(){
+  move()
   currentGame ++;
   totalGames.push(currentGame)
   const data = {
@@ -156,7 +158,7 @@ function showResults(){
   if (counter == 0 || counter <= 2) {
     scoreText.innerHTML = `<div class= "circle"> <h2 class="textResult"><span class="decorationScore"> ${counter} / 10 </span> <br> Looser </h2> </div>`;
   } else if (counter >2 && counter < 5) {
-    scoreText.innerHTML = `<div class= "circle"> <h2 class="textResult"> <span class="decorationScore"> ${counter} / 10 </span> <br> You almost get it! Try again </div> </h2>`;
+    scoreText.innerHTML = `<div class= "circle"> <h2 class="textResult"> <span class="decorationScore"> ${counter} / 10 </span> <br> You almost get it!</div> </h2>`;
   } else if (counter >= 5 && counter <=7) {
     scoreText.innerHTML = `<div class= "circle"> <h2 class="textResult"> <span class="decorationScore"> ${counter} / 10 </span> <br> You're doing great! </div> </h2>`;
   } else if (counter >7 && counter < 10) {
@@ -180,3 +182,22 @@ restartButton.addEventListener('click', () =>{
   startGame()
 })
 showScore.addEventListener('click', showResults)
+
+var i = 0;
+function move(currentQuestionIndex) {
+  if (currentQuestionIndex == 0) {
+    currentQuestionIndex = 1;
+    var elem = document.getElementById("myBar");
+    var width = 1;
+    var id = setInterval(frame, 10);
+    function frame() {
+      if (width >= 100) {
+        clearInterval(id);
+        i = 0;
+      } else {
+        width++;
+        elem.style.width = width + "%";
+      }
+    }
+  }
+}
