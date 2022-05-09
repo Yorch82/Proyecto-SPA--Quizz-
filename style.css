@@ -1,43 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Oxygen:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Oxygen:wght@400;700&display=swap');
-
 *{
   margin: 0;
   padding: 0%;
-  box-sizing: border-box;  
+  box-sizing: border-box;
   color: aliceblue;
 }
-
 body {
   background-color: black;
 }
-
 .navbar{
   display: flex;
   justify-content: center;
   position: sticky;
   background-color: aliceblue;
   height: 50px;
-  align-items: center; 
+  align-items: center;
 }
-
 .navbar-text {
   color: #131313;
   font-family: "Alfa Slab One", sans-serif;
-  font-size: 40px;  
+  font-size: 40px;
 }
-
 #mainContainer{
   border-style: solid;
   display:flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 35vw; 
+  min-height: 35vw;
   padding:1rem;
   margin:1rem;
 }
-
 #welcomeContainer {
   display: flex;
   flex-direction: column;
@@ -45,42 +39,35 @@ body {
   align-content: center;
   justify-content: center;
 }
-
 .textWelcome h2{
    padding-bottom: 50px;
    font-family: "Lobster", sans-serif;
  }
-
 #questionPrint{
   display:flex;
   justify-content: center;
   font-family: "Lobster", sans-serif;
 }
-
 .startContainer {
   display: flex;
   justify-content: center;
 }
-
-#questionContainer{ 
+#questionContainer{
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;  
+    flex-wrap: wrap;
     /* width: 60%; */
     padding:2em;
 }
-
 #buttonContainer{
   display:flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
 }
-
 #btn_embellecedor{
   display: flex;
   margin:1em;
 }
-
 .button_answer{
   display:flex;
   justify-content: center;
@@ -93,7 +80,6 @@ body {
   font-family: "Alfa Slab One", sans-serif;
   font-size: 20px;
 }
-
 .next a{
   display: flex;
   justify-content: center;
@@ -103,17 +89,15 @@ body {
   display: flex;
   justify-content: center;
 }
-
 .btnNext {
   display: flex;
   justify-content: center;
   width: 60%;
-  padding:1em;  
+  padding:1em;
 }
 .btnScore {
   display: flex;
   justify-content: center;
-  
 }
 .btn_result {
   width: 60%;
@@ -122,51 +106,45 @@ body {
 }
 .statContainer {
   display: flex;
-  justify-content: center;  
+  justify-content: center;
 }
 .statBtn {
-  width: 100%;  
+  width: 100%;
 }
-
 .resCont {
-  display: flex;  
+  display: flex;
   justify-content: space-around;
   align-items: center;
   height: 35vh;
   width: 70%;
 }
-
 .rightCont {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   height: 15vh;
 }
-
 .hide{
   display:none;
 }
 .button_answer.correct {
-  background-color: rgb(219, 242, 129);    
+  background-color: rgb(219, 242, 129);
 }
 .button_answer.wrong {
   background-color: rgb(137, 137, 137);
-  animation: shake 300ms;  
+  animation: shake 300ms;
 }
-
 @keyframes shake {
   25% {transform: translateX(4px);}
   50% {transform: translateX(-4px);}
   75% {transform: translateX(4px);}
 }
-
 .btn {
   text-decoration: none;
   padding: 16px 48px;
   border: 3px solid #eee;
   position: relative;
 }
-
 .btn::before {
   content: "";
   position: absolute;
@@ -176,9 +154,7 @@ body {
   transition: height  0.3s;
   z-index: -1;
 }
-
 .btn:hover::before { height: 100%;}
-
 .btn span {
   display: inline-block;
   text-transform: uppercase;
@@ -186,13 +162,9 @@ body {
   font-family: Arial; font-weight: 600;
   transition: trasnform 0.2s;
 }
-
 .btn span:not(:last-child){margin-right: 2px;}
-
 .btn span:hover {transform: translateY(-3px);}
-
 .btn:hover span{ color: #131313}
-
 /* The Modal (background) */
 .modal {
   display: none; /* Hidden by default */
@@ -214,14 +186,13 @@ body {
 .modal-content {
   position: fixed;
   bottom: 0;
-  background-color: #fefefe;
+  background-color: #FEFEFE;
   width: 100%;
   -webkit-animation-name: slideIn;
   -webkit-animation-duration: 0.4s;
   animation-name: slideIn;
   animation-duration: 0.4s
 }
-
 /* The Close Button */
 .close {
   color: white;
@@ -229,39 +200,31 @@ body {
   font-size: 28px;
   font-weight: bold;
 }
-
 .close:hover,
 .close:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;
 }
-
 .modal-header {
   padding: 2px 16px;
-  background-color: #5cb85c;
+  background-color: #5CB85C;
   color: white;
 }
-
-
-
 /* Add Animation */
 @-webkit-keyframes slideIn {
-  from {bottom: -300px; opacity: 0} 
+  from {bottom: -300px; opacity: 0}
   to {bottom: 0; opacity: 1}
 }
-
 @keyframes slideIn {
   from {bottom: -300px; opacity: 0}
   to {bottom: 0; opacity: 1}
 }
-
 @-webkit-keyframes fadeIn {
-  from {opacity: 0} 
+  from {opacity: 0}
   to {opacity: 1}
 }
-
 @keyframes fadeIn {
-  from {opacity: 0} 
+  from {opacity: 0}
   to {opacity: 1}
 }
