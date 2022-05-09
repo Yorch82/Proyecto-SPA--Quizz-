@@ -9,7 +9,8 @@ const answerButtonPrint = document.getElementById("buttonContainer");
 const showScore = document.getElementById ('showScore');
 const globalQuestion = document.getElementById ('globalQuestion');
 const scoreText = document.getElementById ('scoreText');
-const totalQuestions = 10;
+
+const totalQuestions = 5;
 let correctAnswers = 0;
 let currentQuestionIndex;
 let currentGame = 0;
@@ -92,6 +93,7 @@ function showAnswers(question){
       correctAnswers++;
       localStorage.setItem('counter', JSON.stringify(correctAnswers));
     }
+    localStorage.setItem('counter', JSON.stringify(correctAnswers));
     selectAnswer();
     })
     answerButtonPrint.appendChild(button);
@@ -118,8 +120,8 @@ function startGame(){
   const data = {
     labels:  totalGames,
     datasets: [{
-      label: 'Mi primera gráfica',
-      backgroundColor: 'rgb(255, 99, 132)',
+      label: 'Your progress',
+      backgroundColor: 'rgb(51, 161, 253)',
       borderColor: 'rgb(255, 99, 132)',
       data: totalCorrects,
     }]
@@ -150,20 +152,24 @@ function showResults(){
   resultContainer.classList.remove('hide');
   showScore.classList.remove('hide');
   let counter = JSON.parse(localStorage.getItem('counter'))
-  if (counter <= 2) {
-    scoreText.innerHTML = `<h2> ${counter} / 10 <br> Looser </h2>`;
-  } else if (counter >2 && counter < 5) {
-    scoreText.innerHTML = `<h2> ${counter} / 10 <br> You almost get it! Try again </h2>`;
-  } else if (counter >= 5 && counter <=7) {
-    scoreText.innerHTML = `<h2> ${counter} / 10 <br> You're doing great! </h2>`;
-  } else if (counter >7 && counter < 10) {
-    scoreText.innerHTML = `<h2> ${counter} / 10 <br> You are a BEAST! </h2>`;
-  } else {
-    scoreText.innerHTML = `<h2> ${counter} / 10 <br> GOD!!!!!!! </h2>`;
-  }
   console.log(counter)
+  if (counter == 0 || counter <= 2) {
+    scoreText.innerHTML = `<div class= "circle"> <h2 class="textResult"><span class="decorationScore"> ${counter} / 10 </span> <br> Looser </h2> </div>`;
+  } else if (counter >2 && counter < 5) {
+    scoreText.innerHTML = `<div class= "circle"> <h2 class="textResult"> <span class="decorationScore"> ${counter} / 10 </span> <br> You almost get it! Try again </div> </h2>`;
+  } else if (counter >= 5 && counter <=7) {
+    scoreText.innerHTML = `<div class= "circle"> <h2 class="textResult"> <span class="decorationScore"> ${counter} / 10 </span> <br> You're doing great! </div> </h2>`;
+  } else if (counter >7 && counter < 10) {
+    scoreText.innerHTML = `<div class= "circle"> <h2 class="textResult"> <span class="decorationScore"> ${counter} / 10 </span> <br> You are a BEAST! </div> </h2>`;
+  } else {
+    scoreText.innerHTML = `<div class= "circle"> <h2 class="textResult"> <span class="decorationScore"> ${counter} / 10 </span> <br> GOD!!!!!!! </div> </h2>`;
+  }
 }
-startButton.addEventListener('click',startGame)
+startButton.addEventListener('click',() => {
+  localStorage.removeItem('counter')
+  correctAnswers = 0;
+  startGame()
+})
 nextButton.addEventListener('click',() =>{
   currentQuestionIndex++;
   setNextQuestion()
