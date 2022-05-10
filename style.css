@@ -15,13 +15,13 @@ body {
   display: flex;
   justify-content: center;
   position: sticky;
-  height: 50px;
+  height: 4em;
   align-items: center;
 }
 .navbar-text {
   color: #131313;
   font-family: "Alfa Slab One", sans-serif;
-  font-size: 40px;
+  font-size: 3em;
 }
 #mainContainer{
   border-style: solid;
