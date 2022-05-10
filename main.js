@@ -125,7 +125,7 @@ function showQuestion(question){
 
 //Function to show the answers
 function showAnswers(question){
-  let filterAnswer = question.correct_answer.replaceAll(/&quot;/g, "'").replaceAll(/&eacute;/g, "é").replaceAll(/&#039;/g, " ").replaceAll(/&uoml;/g, " ").replaceAll(/&reg;/g, " ")
+  let filterAnswer = question.correct_answer.replaceAll(/&quot;/g, "'").replaceAll(/&eacute;/g, "é").replaceAll(/&#039;/g, " ").replaceAll(/&uoml;/g, "").replaceAll(/&reg;/g, "").replaceAll(/&amp;/g, "")
   let correctAnswer = {
     text : filterAnswer,
     correct : true
@@ -135,7 +135,7 @@ function showAnswers(question){
   let incorrectAnswer = question.incorrect_answers;
   console.log(incorrectAnswer);
   incorrectAnswer.forEach(incorrect => {
-    let incorrectFormat = incorrect.replaceAll(/&quot;/g, "'").replaceAll(/&eacute;/g, "é").replaceAll(/&#039;/g, " ").replaceAll(/&uoml;/g, " ").replaceAll(/&reg;/g, " ")
+    let incorrectFormat = incorrect.replaceAll(/&quot;/g, "'").replaceAll(/&eacute;/g, "é").replaceAll(/&#039;/g, " ").replaceAll(/&uoml;/g, "").replaceAll(/&reg;/g, "").replaceAll(/&amp;/g, "")
     answers.push({text : incorrectFormat, correct : false})  
   })
   answers.push(correctAnswer)
@@ -206,15 +206,30 @@ function showResults(){
   let counter = JSON.parse(localStorage.getItem('counter'))
   console.log(counter)
   if (counter == 0 || counter <= 2) {
-    scoreText.innerHTML = `<div class= "circle"> <h2 class="textResult"><span class="decorationScore"> ${counter} / 10 </span> <br> Looser </h2> </div>`;
+    scoreText.innerHTML = `<div class= "circle"> <h2 class="textResult"><span class="decorationScore"> ${counter} / 10 </span> <br> LOOSER </h2> </div>
+    <audio autoplay>
+  <source src="./Assets/Fail.mp3" type="audio/mpeg">
+  </audio>`;
   } else if (counter >2 && counter < 5) {
-    scoreText.innerHTML = `<div class= "circle"> <h2 class="textResult"> <span class="decorationScore"> ${counter} / 10 </span> <br> You almost get it!</div> </h2>`;
+    scoreText.innerHTML = `<div class= "circle"> <h2 class="textResult"> <span class="decorationScore"> ${counter} / 10 </span> <br> YOU ALMOST GOT IT!</div> </h2>
+    <audio autoplay>
+    <source src="./Assets/Retratado.mp3" type="audio/mpeg">
+    </audio>`;
   } else if (counter >= 5 && counter <=7) {
-    scoreText.innerHTML = `<div class= "circle"> <h2 class="textResult"> <span class="decorationScore"> ${counter} / 10 </span> <br> You're doing great! </div> </h2>`;
+    scoreText.innerHTML = `<div class= "circle"> <h2 class="textResult"> <span class="decorationScore"> ${counter} / 10 </span> <br> YOU'RE DOING GREAT! </div> </h2>
+    <audio autoplay>
+  <source src="./Assets/Kids.mp3" type="audio/mpeg">
+  </audio>`;
   } else if (counter >7 && counter < 10) {
-    scoreText.innerHTML = `<div class= "circle"> <h2 class="textResult"> <span class="decorationScore"> ${counter} / 10 </span> <br> You are a BEAST! </div> </h2>`;
+    scoreText.innerHTML = `<div class= "circle"> <h2 class="textResult"> <span class="decorationScore"> ${counter} / 10 </span> <br> YOU ARE A BEAST! </div> </h2>
+    <audio autoplay>
+  <source src="./Assets/Chiquito.mp3" type="audio/mpeg">
+  </audio>`;
   } else {
-    scoreText.innerHTML = `<div class= "circle"> <h2 class="textResult"> <span class="decorationScore"> ${counter} / 10 </span> <br> GOD!!!!!!! </div> </h2>`;
+    scoreText.innerHTML = `<div class= "circle"> <h2 class="textResult"> <span class="decorationScore"> ${counter} / 10 </span> <br> LEGEND! </div> </h2>
+    <audio autoplay>
+    <source src="./Assets/Austin.mp3" type="audio/mpeg">
+    </audio>`;
   }
 }
 
