@@ -12,7 +12,6 @@
 
 
 <details>
-  <summary>Tabla de contenidos</summary>
   <ol>
     <li>
       <a href="#sobre-el-proyecto">Sobre el proyecto</a>
