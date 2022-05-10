@@ -125,19 +125,21 @@ function showQuestion(question){
 
 //Function to show the answers
 function showAnswers(question){
+  let filterAnswer = question.correct_answer.replaceAll(/&quot;/g, "'").replaceAll(/&eacute;/g, "é").replaceAll(/&#039;/g, " ").replaceAll(/&uoml;/g, " ").replaceAll(/&reg;/g, " ")
   let correctAnswer = {
-    text : question.correct_answer,
+    text : filterAnswer,
     correct : true
   };
+  console.log(question.correct_answer,"la mala")
   let answers =[]
   let incorrectAnswer = question.incorrect_answers;
   console.log(incorrectAnswer);
   incorrectAnswer.forEach(incorrect => {
-    let incorrectFormat = incorrect.replaceAll(/&quot;/g, "'").replaceAll(/&eacute;/g, "é").replaceAll(/&#039;/g, " ")
+    let incorrectFormat = incorrect.replaceAll(/&quot;/g, "'").replaceAll(/&eacute;/g, "é").replaceAll(/&#039;/g, " ").replaceAll(/&uoml;/g, " ").replaceAll(/&reg;/g, " ")
     answers.push({text : incorrectFormat, correct : false})  
   })
-  console.log(answers)
   answers.push(correctAnswer)
+  console.log(answers, "soy las respuestas")
   answers.sort(function(a,b){
     if (a.text > b.text){
       return 1
@@ -155,11 +157,10 @@ function showAnswers(question){
       button.dataset.correct = true
     }
     button.addEventListener('click',() =>{
-      if (answer.correct == true){
-      button.disabled = true;
+      if (answer.correct == true){       
       correctAnswers++;
       localStorage.setItem('counter', JSON.stringify(correctAnswers));
-    }
+    } 
     localStorage.setItem('counter', JSON.stringify(correctAnswers));
     selectAnswer();
     })
@@ -170,7 +171,7 @@ function showAnswers(question){
 //Funciton to detect the correct and wrong answers
 function selectAnswer(){
   Array.from(answerButtonPrint.children).forEach((button) => {
-
+    button.disabled = true;
     setStatusClass(button, button.dataset.correct);
 });
   if ( totalQuestions > currentQuestionIndex + 1) {

@@ -29,7 +29,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 35vw;
+  height: 95vh;
   padding:1rem;
   margin:1rem;
 }
@@ -61,6 +61,7 @@ body {
     flex-wrap: wrap;
     /* width: 60%; */
     padding:2em;
+    /* margin-bottom:4em; */
 }
 #buttonContainer{
   display:flex;
@@ -92,11 +93,14 @@ body {
 #myProgress{
   background-color: grey;
   width:50em;
+  margin-top:1em;
+  border-radius: 10em;
 }
 
 #myBar{
   height: 30px;
-  background-color: rgb(248, 228, 9)
+  background-color: rgb(248, 228, 9);
+  border-radius: 10em;
 }
 
 .barContainer{
@@ -111,12 +115,15 @@ body {
 .btnNext {
   display: flex;
   justify-content: center;
-  width: 60%;
+  width: 30%;
   padding:1em;
+  margin-bottom: 3em;
 }
 .btnScore {
   display: flex;
   justify-content: center;
+  padding:1em;
+  margin-top: 3em;
 }
 .btn_result {
   width: 60%;
