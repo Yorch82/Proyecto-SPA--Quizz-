@@ -1,3 +1,4 @@
+//We take consts from DOM
 const textWelcome = document.getElementById("textWelcome");
 const questionContainer = document.getElementById("questionContainer");
 const resultContainer = document.getElementById("resultContainer");
@@ -9,114 +10,64 @@ const answerButtonPrint = document.getElementById("buttonContainer");
 const showScore = document.getElementById ('showScore');
 const globalQuestion = document.getElementById ('globalQuestion');
 const scoreText = document.getElementById ('scoreText');
+let modal = document.getElementById("myModal");
+const btn2 = document.getElementById("viewStats");
+let span = document.getElementsByClassName("close")[0];
+const myBar = document.getElementById("myBar");
 
-const totalQuestions = 5;
+
+//We create variables for counters
+const totalQuestions = 10;
 let correctAnswers = 0;
 let currentQuestionIndex;
 let currentGame = 0;
 totalGames = []
 totalCorrects=[]
 let myChart;
-// Get the modal
-let modal = document.getElementById("myModal");
-// Get the button that opens the modal
-const btn2 = document.getElementById("viewStats");
-// Get the <span> element that closes the modal
-let span = document.getElementsByClassName("close")[0];
+
+//Here we trigger the Start Button to begin the game
+startButton.addEventListener('click',() => {
+  localStorage.removeItem('counter')
+  correctAnswers = 0;
+  startGame()
+})
+
+//Event on next button to set and count the next question
+nextButton.addEventListener('click',() =>{
+  currentQuestionIndex++;
+  setNextQuestion()
+})
+
+//Event on restart button in order to restart game and remove counter from local storage
+restartButton.addEventListener('click', () =>{
+  localStorage.removeItem('counter')
+  correctAnswers = 0;
+  startGame()
+})
+
+//Event that triggers the function to see your stats
+showScore.addEventListener('click', showResults)
+
+
 // When the user clicks the button, open the modal
 btn2.addEventListener('click',function() {
   modal.style.display = "block";
 })
+
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
   modal.style.display = "none";
 }
+
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
 }
-function setStatusClass(element, correct){
-  if (correct){
-    element.classList.add('correct');
-  } else {
-    element.classList.add('wrong');
-  }
-}
-function selectAnswer(){
-  Array.from(answerButtonPrint.children).forEach((button) => {
 
-    setStatusClass(button, button.dataset.correct);
-});
-  if ( totalQuestions > currentQuestionIndex + 1) {
-    nextButton.classList.remove('hide');
-  } else{
-  totalCorrects.push(correctAnswers)
-  showScore.classList.remove('hide');
-}
-}
-function showQuestion(question){
-  questionPrint.innerHTML = `<h2>${question.question}</h2>`;
-  showAnswers(question)
-}
-function showAnswers(question){
-  let correctAnswer = {
-    text : question.correct_answer,
-    correct : true
-  };
-  let answers =[]
-  let incorrectAnswer = question.incorrect_answers;
-  incorrectAnswer.forEach(incorrect => {
-    let incorrectFormat = incorrect.replaceAll(/&quot;/ig, "'").replaceAll(/&eacute;/ig, "é").replaceAll(/&#039;/ig, "");
-    answers.push({text : incorrectFormat, correct : false})
-  })
-  answers.push(correctAnswer)
-  answers.sort(function(a,b){
-    if (a.text > b.text){
-      return 1
-    }
-    if (a.text < b.text){
-      return -1
-    }
-    return 0
-  })
-  answers.forEach(answer => {
-    const button = document.createElement("button")
-    button.innerText = answer.text
-    button.classList.add("button_answer")
-    if (answer.correct){
-      button.dataset.correct = true
-    }
-    button.addEventListener('click',() =>{
-      if (answer.correct == true){
-      button.disabled = true;
-      correctAnswers++;
-      localStorage.setItem('counter', JSON.stringify(correctAnswers));
-    }
-    localStorage.setItem('counter', JSON.stringify(correctAnswers));
-    selectAnswer();
-    })
-    answerButtonPrint.appendChild(button);
-    })
-}
-function resetState() {
-  nextButton.classList.add('hide');
-  while (answerButtonPrint.firstChild){
-    answerButtonPrint.removeChild(answerButtonPrint.firstChild)
-  }
-}
-function setInitialQuestion(arrayQuestions){
-  resetState()
-  showQuestion(arrayQuestions[currentQuestionIndex])
-}
-function setNextQuestion(){
-  let preguntas = JSON.parse(localStorage.getItem('preguntas'))
-  resetState();
-  showQuestion(preguntas[currentQuestionIndex]);
-}
+//Function so start game
 function startGame(){
-  move()
   currentGame ++;
   totalGames.push(currentGame)
   const data = {
@@ -149,6 +100,104 @@ function startGame(){
   })
   .catch((err) => console.error(err));
 }
+
+//Function to set the initial question
+function setInitialQuestion(arrayQuestions){  
+  resetState()
+  showQuestion(arrayQuestions[currentQuestionIndex])
+}
+
+//Function to reset the the answers state before print the next one
+function resetState() {
+  nextButton.classList.add('hide');
+  
+  while (answerButtonPrint.firstChild){
+    answerButtonPrint.removeChild(answerButtonPrint.firstChild)
+  }
+}
+
+//Function to print the current question on HTML
+function showQuestion(question){
+  myBar.style.width = `${(currentQuestionIndex/totalQuestions) * 100}%`
+  questionPrint.innerHTML = `<h2>${question.question}</h2>`;
+  showAnswers(question)
+}
+
+//Function to show the answers
+function showAnswers(question){
+  let correctAnswer = {
+    text : question.correct_answer,
+    correct : true
+  };
+  let answers =[]
+  let incorrectAnswer = question.incorrect_answers;
+  console.log(incorrectAnswer);
+  incorrectAnswer.forEach(incorrect => {
+    let incorrectFormat = incorrect.replaceAll(/&quot;/g, "'").replaceAll(/&eacute;/g, "é").replaceAll(/&#039;/g, " ")
+    answers.push({text : incorrectFormat, correct : false})  
+  })
+  console.log(answers)
+  answers.push(correctAnswer)
+  answers.sort(function(a,b){
+    if (a.text > b.text){
+      return 1
+    }
+    if (a.text < b.text){
+      return -1
+    }
+    return 0
+  })
+  answers.forEach(answer => {
+    const button = document.createElement("button")
+    button.innerText = answer.text
+    button.classList.add("button_answer")
+    if (answer.correct){
+      button.dataset.correct = true
+    }
+    button.addEventListener('click',() =>{
+      if (answer.correct == true){
+      button.disabled = true;
+      correctAnswers++;
+      localStorage.setItem('counter', JSON.stringify(correctAnswers));
+    }
+    localStorage.setItem('counter', JSON.stringify(correctAnswers));
+    selectAnswer();
+    })
+    answerButtonPrint.appendChild(button);
+    })
+}
+
+//Funciton to detect the correct and wrong answers
+function selectAnswer(){
+  Array.from(answerButtonPrint.children).forEach((button) => {
+
+    setStatusClass(button, button.dataset.correct);
+});
+  if ( totalQuestions > currentQuestionIndex + 1) {
+    nextButton.classList.remove('hide');
+  } else{
+  totalCorrects.push(correctAnswers)
+  showScore.classList.remove('hide');
+}
+}
+
+//Function that set the color to the buttons as needed
+function setStatusClass(element, correct){
+  if (correct){
+    element.classList.add('correct');
+  } else {
+    element.classList.add('wrong');
+  }
+}
+
+//function to set the second and the incoming questions
+function setNextQuestion(){
+  let preguntas = JSON.parse(localStorage.getItem('preguntas'))
+  resetState();
+  showQuestion(preguntas[currentQuestionIndex]);
+}
+
+//Function to print your stats
 function showResults(){
   globalQuestion.classList.add('hide');
   resultContainer.classList.remove('hide');
@@ -167,37 +216,18 @@ function showResults(){
     scoreText.innerHTML = `<div class= "circle"> <h2 class="textResult"> <span class="decorationScore"> ${counter} / 10 </span> <br> GOD!!!!!!! </div> </h2>`;
   }
 }
-startButton.addEventListener('click',() => {
-  localStorage.removeItem('counter')
-  correctAnswers = 0;
-  startGame()
-})
-nextButton.addEventListener('click',() =>{
-  currentQuestionIndex++;
-  setNextQuestion()
-})
-restartButton.addEventListener('click', () =>{
-  localStorage.removeItem('counter')
-  correctAnswers = 0;
-  startGame()
-})
-showScore.addEventListener('click', showResults)
 
-var i = 0;
-function move(currentQuestionIndex) {
-  if (currentQuestionIndex == 0) {
-    currentQuestionIndex = 1;
-    var elem = document.getElementById("myBar");
-    var width = 1;
-    var id = setInterval(frame, 10);
-    function frame() {
-      if (width >= 100) {
-        clearInterval(id);
-        i = 0;
-      } else {
-        width++;
-        elem.style.width = width + "%";
-      }
-    }
-  }
-}
+
+// function move() {
+//   var element = document.getElementById("myBar");   
+//   var width = 1;
+//   var identity = setInterval(scene, 10);
+//   function scene() {
+//     if (width >= 100) {
+//       clearInterval(identity);
+//     } else {
+//       width++; 
+//       element.style.width = width + '%'; 
+//     }
+//   }
+// }
