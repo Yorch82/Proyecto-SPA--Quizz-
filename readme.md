@@ -9,7 +9,7 @@
   <br>
 </div>
   
-  Puedes ver el proyecto desplegado a través del siguiente enlace: [https://example.com](https://spa-trivial.netlify.app/)
+https://spa-trivial.netlify.app/
   
 
 <details>
