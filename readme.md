@@ -8,14 +8,12 @@
   <br>
   <br>
 </div>
-
-Puedes ver el proyecto desplegado a través del siguiente enlace:
+  
+- Puedes ver el proyecto desplegado a través del siguiente enlace:
 
    ```sh
    https://spa-trivial.netlify.app/
-   ```
-
-
+   ```  
 
 <details>
   <ol>
