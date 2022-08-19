@@ -130,16 +130,16 @@ function showAnswers(question){
     text : filterAnswer,
     correct : true
   };
-  console.log(question.correct_answer,"la mala")
+  
   let answers =[]
   let incorrectAnswer = question.incorrect_answers;
-  console.log(incorrectAnswer);
+  
   incorrectAnswer.forEach(incorrect => {
     let incorrectFormat = incorrect.replaceAll(/&quot;/g, "'").replaceAll(/&eacute;/g, "é").replaceAll(/&#039;/g, " ").replaceAll(/&uoml;/g, "").replaceAll(/&reg;/g, "").replaceAll(/&amp;/g, "")
     answers.push({text : incorrectFormat, correct : false})  
   })
   answers.push(correctAnswer)
-  console.log(answers, "soy las respuestas")
+  
   answers.sort(function(a,b){
     if (a.text > b.text){
       return 1
@@ -204,7 +204,7 @@ function showResults(){
   resultContainer.classList.remove('hide');
   showScore.classList.remove('hide');
   let counter = JSON.parse(localStorage.getItem('counter'))
-  console.log(counter)
+  
   if (counter == 0 || counter <= 2) {
     scoreText.innerHTML = `<div class= "circle"> <h2 class="textResult"><span class="decorationScore"> ${counter} / 10 </span> <br> LOOSER </h2> </div>
     <audio autoplay>
