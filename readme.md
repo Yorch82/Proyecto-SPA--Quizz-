@@ -8,9 +8,6 @@
   <br>
   <br>
 </div>
-  
-https://spa-trivial.netlify.app/
-  
 
 <details>
   <ol>
