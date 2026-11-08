@@ -2,92 +2,263 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz</title>
+    <meta name="description" content="A fast-paced trivia quiz. Ten questions, four answers, one shot. Test your knowledge and beat your best score.">
+    <meta name="theme-color" content="#070a12">
+    <title>Trivia Quiz — Think fast. Play smart.</title>
+    <link rel="icon" href="./Assets/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <nav class="navbar">
-        <a class="navbar-text">TRIVIA QUIZ</a>
-    </nav>
-    <main>
-        <div id="mainContainer">
-            <div  id="welcomeContainer">
-                <div class="textWelcome" id="textWelcome">
-                    <h2>¡Welcome to the Quiz!</h2>
-                    <div class = "startContainer">
-                    <a href="#" id="start-btn" class="btn">
-                        <span>S</span><span>T</span>
-                        <span>A</span><span>R</span>
-                        <span>T</span>
-                    </a>
-                    </div>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="bg-art" aria-hidden="true">
+        <span class="orb orb-1"></span>
+        <span class="orb orb-2"></span>
+        <span class="orb orb-3"></span>
+    </div>
+
+    <header class="site-header">
+        <a href="#" class="brand" id="brand-home" aria-label="Trivia Quiz — go to home">
+            <span class="brand-mark" aria-hidden="true">Q</span>
+            <span class="brand-name">Trivia<span>Quiz</span></span>
+        </a>
+        <div class="header-actions">
+            <span class="header-tag">10 questions</span>
+            <button id="sound-toggle" class="icon-btn" type="button" aria-pressed="true" aria-label="Mute sound">
+                <svg class="icon-on" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M11 5 6 9H3v6h3l5 4V5Z"/>
+                    <path d="M15.5 8.5a5 5 0 0 1 0 7"/>
+                    <path d="M18.2 6a9 9 0 0 1 0 12"/>
+                </svg>
+                <svg class="icon-off" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M11 5 6 9H3v6h3l5 4V5Z"/>
+                    <path d="m16 9 5 5m0-5-5 5"/>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <main class="app-shell" id="main">
+        <!-- ===================== WELCOME ===================== -->
+        <section class="screen welcome" id="screen-welcome">
+            <div class="hero-copy">
+                <span class="eyebrow"><span class="pulse-dot"></span> Live trivia · 10 questions</span>
+                <h1>Think fast.<br><span class="gradient-text">Play smart.</span></h1>
+                <p class="lede">Ten questions. Four choices. One shot each. Pick a category you did not study for and prove you have the answers.</p>
+                <div class="hero-actions">
+                    <button id="start-btn" class="btn btn-primary" type="button">
+                        <span>Start quiz</span>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    </button>
+                    <button id="view-stats-welcome" class="btn btn-ghost" type="button">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9m6 10V5m6 14v-7m4 7V3"/></svg>
+                        <span>View stats</span>
+                    </button>
                 </div>
-            </div>
-            <div id="globalQuestion" class="hide">
-                <div id="questionContainer" class="hide">
-                <div id ="questionPrint"></div>
-                </div>
-                <div id = "buttonContainer" class="hide"></div> 
-                    <div class="barContainer">           
-                    <div id="myProgress" class="progressContainer">
-                    <div id="myBar"></div>
-                    </div>   
-                </div>
-            <div class="btnScore">
-                <a href="#" id="showScore" class="btn btn_result hide">
-                    <span>R</span><span>E</span>
-                    <span>S</span><span>U</span>
-                    <span>L</span><span>T</span>
-                    <span>S</span>
-                </a>
-            </div>
-            </div>
-            <a href="#" id="next-btn" class="btn btnNext hide">
-                <span>N</span><span>E</span>
-                <span>X</span><span>T</span>
-            </a>
-            <div id="resultContainer" class="hide resCont">
-                <div class="leftCont">
-                    <div id="score"></div>
-                    <div id="scoreTextContainer">
-                        <div id="scoreText" class="">Here goes your results!</div>
-                    </div>
-                </div>
-                <div class="rightCont">
+                <div class="hero-stats">
                     <div>
-                        <a href="#" id="restart-btn" class="btn btn_restart">
-                            <span>R</span><span>E</span>
-                            <span>S</span><span>T</span>
-                            <span>A</span><span>R</span>
-                            <span>T</span>
-                        </a>
+                        <strong id="welcome-best">—</strong>
+                        <span>Best score</span>
                     </div>
-                    <div class="statContainer">
-                        <a href="#" id="viewStats" class="btn statBtn">
-                            <span>S</span><span>T</span>
-                            <span>A</span><span>T</span>
-                            <span>S</span>
-                        </a>                      
+                    <div>
+                        <strong id="welcome-games">0</strong>
+                        <span>Games played</span>
+                    </div>
+                    <div>
+                        <strong>10</strong>
+                        <span>Questions</span>
                     </div>
                 </div>
-                <div id="myModal" class="modal">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <span class="close">&times;</span>
-                        <div class="yourStats">
-                        <h2>YOUR STATS</h2>
-                        </div>
-                      </div>
-                        <canvas id="chart" width="100px" height="20px"></canvas>
+            </div>
+
+            <aside class="preview" aria-hidden="true">
+                <div class="preview-glow"></div>
+                <div class="preview-card">
+                    <div class="preview-top">
+                        <span class="preview-chip">Science</span>
+                        <span class="preview-chip preview-chip--easy">Easy</span>
+                    </div>
+                    <p class="preview-question">Which planet is known as the Red Planet?</p>
+                    <div class="preview-answers">
+                        <span class="preview-answer">Venus</span>
+                        <span class="preview-answer is-correct">
+                            Mars
+                            <svg viewBox="0 0 24 24"><path d="m5 12 5 5L20 7"/></svg>
+                        </span>
+                        <span class="preview-answer">Jupiter</span>
+                        <span class="preview-answer">Mercury</span>
+                    </div>
+                    <div class="preview-progress"><span></span></div>
+                </div>
+                <div class="float-chip float-chip--score">
+                    <strong>9/10</strong>
+                    <span>Nice run</span>
+                </div>
+                <div class="float-chip float-chip--streak">
+                    <span class="pulse-dot"></span>
+                    <strong>4 streak</strong>
+                </div>
+            </aside>
+        </section>
+
+        <!-- ===================== LOADING ===================== -->
+        <section class="screen loading" id="screen-loading" aria-live="polite" hidden>
+            <div class="loader" aria-hidden="true"></div>
+            <h2>Setting up your quiz</h2>
+            <p>Fetching ten fresh questions…</p>
+        </section>
+
+        <!-- ===================== ERROR ===================== -->
+        <section class="screen error" id="screen-error" hidden>
+            <div class="error-card">
+                <span class="error-icon" aria-hidden="true">!</span>
+                <h2>We couldn't load your quiz</h2>
+                <p id="error-message">The trivia service is not responding right now.</p>
+                <div class="error-actions">
+                    <button id="retry-btn" class="btn btn-primary" type="button">
+                        <span>Try again</span>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg>
+                    </button>
+                    <button id="error-home" class="btn btn-ghost" type="button">Back home</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== QUIZ ===================== -->
+        <section class="screen quiz" id="screen-quiz" hidden>
+            <div class="quiz-head">
+                <div class="quiz-head-row">
+                    <p id="question-counter">Question 1 of 10</p>
+                    <div class="quiz-chips">
+                        <span class="chip chip--score">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>
+                            <span id="live-score">0</span> correct
+                        </span>
+                        <span class="chip chip--streak" id="streak-badge" hidden>
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22c4 0 7-2.9 7-6.6 0-2.8-1.5-5.2-3.6-7.1-.4 1.9-1.6 3.2-3.1 3.7.4-2.7-.8-5.5-2.3-7.2-.2 2.4-1.3 4-3 5.6-1.3 1.3-2 3-2 4.9C5 19.1 8 22 12 22Z"/></svg>
+                            <span id="streak-count">2</span> streak
+                        </span>
                     </div>
                 </div>
+                <div class="progress-track" id="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="10" aria-valuenow="1" aria-label="Quiz progress">
+                    <span id="progress-bar"></span>
+                </div>
+                <div class="quiz-meta">
+                    <span class="pill" id="category-badge">Category</span>
+                    <span class="pill" id="difficulty-badge">Difficulty</span>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <h2 id="question-text" tabindex="-1"></h2>
+            </div>
+
+            <div id="answers" class="answers" role="group" aria-label="Answer options"></div>
+
+            <p id="feedback" class="feedback" aria-live="polite"></p>
+
+            <div class="quiz-footer">
+                <button id="next-btn" class="btn btn-primary" type="button" hidden>
+                    <span>Next question</span>
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- ===================== RESULTS ===================== -->
+        <section class="screen results" id="screen-results" hidden>
+            <div class="results-card">
+                <span class="eyebrow">Quiz complete</span>
+                <div class="score-ring" id="score-ring" style="--score: 0">
+                    <div class="score-ring-inner">
+                        <strong id="final-score">0</strong>
+                        <span>out of <span id="final-total">10</span></span>
+                    </div>
+                </div>
+                <h2 class="result-title" id="result-title" tabindex="-1">Nice run!</h2>
+                <p class="result-message" id="result-message">Here is how you did.</p>
+
+                <div class="result-stats">
+                    <div>
+                        <strong id="stat-correct">0</strong>
+                        <span>Correct</span>
+                    </div>
+                    <div>
+                        <strong id="stat-wrong">0</strong>
+                        <span>Missed</span>
+                    </div>
+                    <div>
+                        <strong id="stat-accuracy">0%</strong>
+                        <span>Accuracy</span>
+                    </div>
+                </div>
+
+                <div class="result-actions">
+                    <button id="restart-btn" class="btn btn-primary" type="button">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg>
+                        <span>Play again</span>
+                    </button>
+                    <button id="view-stats" class="btn btn-ghost" type="button">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9m6 10V5m6 14v-7m4 7V3"/></svg>
+                        <span>View stats</span>
+                    </button>
+                    <button id="home-btn" class="btn btn-subtle" type="button">Home</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===================== STATS MODAL ===================== -->
+    <div id="stats-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="stats-title" hidden>
+        <div class="modal-backdrop" data-close-modal></div>
+        <div class="modal-panel">
+            <div class="modal-head">
+                <div>
+                    <p class="eyebrow">Progress</p>
+                    <h2 id="stats-title">Your stats</h2>
+                </div>
+                <button class="icon-btn modal-close" id="stats-close" type="button" data-close-modal aria-label="Close stats">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+                </button>
+            </div>
+
+            <div class="stats-summary">
+                <div>
+                    <strong id="stats-best">—</strong>
+                    <span>Best score</span>
+                </div>
+                <div>
+                    <strong id="stats-average">—</strong>
+                    <span>Average</span>
+                </div>
+                <div>
+                    <strong id="stats-games">0</strong>
+                    <span>Games</span>
+                </div>
+            </div>
+
+            <div class="stats-chart-wrap">
+                <div id="stats-chart" class="stats-chart" role="img" aria-label="Score history chart"></div>
+                <div id="stats-empty" class="stats-empty" hidden>
+                    <strong>No games yet</strong>
+                    <span>Finish a quiz and your scores will show up here.</span>
+                </div>
+            </div>
+
+            <div class="modal-foot">
+                <span>Last 12 games</span>
+                <button id="clear-stats" class="btn btn-subtle" type="button">Clear history</button>
             </div>
         </div>
-    </main>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <audio id="sfx" preload="none"></audio>
+
     <script src="./main.js"></script>
 </body>
 </html>
